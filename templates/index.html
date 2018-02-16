@@ -11,27 +11,56 @@
 </head>
 
 <style>
-{
+*{
     box-sizing: border-box;
+}
+
+.div_box {
+    width: 100%;
+    padding: 10px;
+    border: 5px #EEEEEE;
+    margin: 0; 
+    margin-bottom: 20px;
+
+}
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url('banner1.jpg');
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+
+.boxh{
+  margin-bottom: 20px;
+  margin-right: 0px;
+  /*border:1px solid gray;*/
 }
 
 body {
     margin: 0;
     font-family: Arial;
+   padding-bottom: 40px;
+   color: #5a5a5a;
 }
 
 .header {
     text-align: center;
     padding: 32px;
 }
-/*
-.row {
-    display: -ms-flexbox; 
-    display: flex;
-    -ms-flex-wrap: wrap; 
-    flex-wrap: wrap;
-    padding: 0 4px;
-}*/
+.marketing .col-lg-4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
 .facts {
     background-color: lightgrey;
     width: 300px;
@@ -79,39 +108,54 @@ body {
 
 
 <body>
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="jumbotron text-center">
-      <h1>Mission to Mars</h1>
+      <h1 class="header">Mission to Mars</h1>
+
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
-    
+
+
+
+    <div class="container  marketing">
     <div class="row" >
-      <div class="col-md-12">
-        <h2>Latest Mars News</h2>
-        {% for each in listings.nasa %}
-        <h3>{{each.news}}</h3>
-        <h4 class="heading"> {{each.news_paragraph}}</h4>
-        <img src={{each.img_link}}>
-        <h4>{{each.date_news}}</h4>
-        <button ><a href={{each.details_a}}>Details>></a></button>
+      <h1 class="header">Latest Mars News</h1>
+        <div >
+          {% for each in listings.nasa %}
+        
+          <img class="img-circle " src={{each.img_link}} alt="Generic placeholder image" width="140" height="140">          
+          <h3>{{each.news}}</h3>
+          <h4>{{each.date_news}}</h4>
+          <p>{{each.news_paragraph}}</p>
+          <p><a class="btn btn-default" href={{each.details_a}} role="button">View details &raquo;</a></p>
+          {% endfor %}
+        
+        </div>
          
-        {% endfor %}
         
-        <!-- @TODO render your data here -->
         
-      </div>
-      <div class="row">
-        <div class="col-md-8">
-          <h2>Featured Mars Image</h2>
+        
+    </div>
+
+      
+
+
+
+
+
+
+      <div class="row div_box">
+        <div class="col-md-7">
+          <h2 class="header">Featured Mars Image</h2>
           <img src={{listings.featured_image_url}} class="feature_img">
         </div>
-      <div class="col-md-4 box ">
+      <div class="col-md-5 box ">
         <div class="facts">
-      <h3>Current Weather Data</h3>
+      <h3 class="header">Current Weather Data</h3>
       <h4 class="heading" class="facts">{{listings.mars_weather}}</h4>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-5">
         <h3>Mars Facts</h3>
      
       {{listings.facts |safe}}
@@ -119,18 +163,19 @@ body {
       </div> 
     </div>
     </div> 
-    <h2>Mars Hemispheres</h2>
-    <div class="row">
+    <h2 class="header">Mars Hemispheres</h2>
+    <div class="row div_box">
       
 
       {% for h in listings.hemisphere %}
-      <div class="col-sm-6">
+      <div class="col-sm-6 boxh">
         <img src={{h.image_url}} class="feature_img">
+        <em class="header">{{h.title}}</em>
       </div>
       {% endfor %}
       
     </div>
-  
+  </div>
 
   </div>
 </body>

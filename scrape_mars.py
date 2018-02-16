@@ -139,7 +139,7 @@ def scrape1():
         hem_soup = BeautifulSoup(hem_html, 'html.parser')
         div_hem=hem_soup.find("div",class_="downloads")
         img_hem=div_hem.find("a")
-        hem_dict["title"]=hem
+        hem_dict["title"]=hem_soup.find("h2",class_="title").text
         hem_dict["image_url"]=img_hem["href"]
         hem_list.append(hem_dict)
         #print(hem + " done")
