@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="apple-touch-icon" href="https://cdn.css-tricks.com/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<style>
+{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+}
+
+.header {
+    text-align: center;
+    padding: 32px;
+}
+/*
+.row {
+    display: -ms-flexbox; 
+    display: flex;
+    -ms-flex-wrap: wrap; 
+    flex-wrap: wrap;
+    padding: 0 4px;
+}*/
+.facts {
+    background-color: lightgrey;
+    width: 300px;
+    /*border: 25px solid green;*/
+    padding: 25px;
+    margin: 25px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    max-width: 100%;
+    max-height:100%;
+    padding: 0 4px;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+}
+
+.feature_img{
+  max-width:100%;
+  max-height:100%;
+}
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media (max-width: 800px) {
+    .column {
+        -ms-flex: 50%;
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .column {
+        -ms-flex: 100%;
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+</style>
+
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    
+    <div class="row" >
+      <div class="col-md-12">
+        <h2>Latest Mars News</h2>
+        {% for each in listings.nasa %}
+        <h3>{{each.news}}</h3>
+        <h4 class="heading"> {{each.news_paragraph}}</h4>
+        <img src={{each.img_link}}>
+        <h4>{{each.date_news}}</h4>
+        <button ><a href={{each.details_a}}>Details>></a></button>
+         
+        {% endfor %}
+        
+        <!-- @TODO render your data here -->
+        
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Featured Mars Image</h2>
+          <img src={{listings.featured_image_url}} class="feature_img">
+        </div>
+      <div class="col-md-4 box ">
+        <div class="facts">
+      <h3>Current Weather Data</h3>
+      <h4 class="heading" class="facts">{{listings.mars_weather}}</h4>
+      </div>
+      <div class="col-md-4">
+        <h3>Mars Facts</h3>
+     
+      {{listings.facts |safe}}
+      
+      </div> 
+    </div>
+    </div> 
+    <h2>Mars Hemispheres</h2>
+    <div class="row">
+      
+
+      {% for h in listings.hemisphere %}
+      <div class="col-sm-6">
+        <img src={{h.image_url}} class="feature_img">
+      </div>
+      {% endfor %}
+      
+    </div>
+  
+
+  </div>
+</body>
+
+</html>
+
