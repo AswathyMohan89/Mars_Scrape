@@ -15,6 +15,7 @@
     box-sizing: border-box;
 }
 
+
 .div_box {
     width: 100%;
     padding: 10px;
@@ -25,10 +26,11 @@
 }
 .jumbotron {
     margin-bottom: 0px;
-    background-image: url('banner1.jpg');
+    background-image: url('/statics/images/banner1.jpg');
     background-position: 0% 25%;
     background-size: cover;
     background-repeat: no-repeat;
+    height: 50%;
     color: white;
     text-shadow: black 0.3em 0.3em 0.3em;
 }
@@ -87,6 +89,14 @@ body {
   max-width:100%;
   max-height:100%;
 }
+
+ .headline1 {
+      background-image: url(/static/images/banner1.jpg);
+      background-repeat: no-repeat;
+      background-position: left top;
+      padding-top:68px;
+      margin-bottom:50px;
+   }
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media (max-width: 800px) {
     .column {
@@ -108,11 +118,13 @@ body {
 
 
 <body>
+
+
   <div class="container-fluid">
 
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center headline1">
       <h1 class="header">Mission to Mars</h1>
-
+      
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
